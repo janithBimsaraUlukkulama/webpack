@@ -1,1 +1,5 @@
-console.log("hello ha ha");
+const foo = (name)=>{
+    console.log(`Hello ${name}!`);
+}
+
+foo('World');
