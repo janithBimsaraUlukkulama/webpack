@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebpack=self.webpackChunkwebpack||[]).push([[826],{126:function(e,n,c){var o=c(486),s=c.n(o);console.log(s().join(["Index","module","loaded!"]," "))}},function(e){e(e.s=126)}]);

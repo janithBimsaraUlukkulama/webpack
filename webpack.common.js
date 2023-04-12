@@ -2,26 +2,28 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            }
-        ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin(),
+  entry: {
+    index: { import: './src/js/index.js', dependOn: 'shared' },
+    sum: { import: './src/js/sum.js', dependOn: 'shared' },
+    shared: 'lodash',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
     ],
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
     },
+  },
+  plugins: [new HtmlWebpackPlugin({})],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
 };
